@@ -20,17 +20,14 @@ function createPage(){
        </div>`
     }
     addSaveFunctionality()
-    blockColors()
 }
 
-function blockColors(){
+function blockColors() {
 
-   for (var i = 0; i < time; i++) {
+var presentHour = moment().format("HH:mm");
 
-    var presentHour = moment().format("HH:mm");
-    var timeBlock = document.getElementsByClassName('time-block')[i].innerHTML;
-    var time = document.getElementsByClassName('time-block').length;
-
+var timeBlock = parseInt($(this).attr("id").split("time-block")[1]);
+ 
   if (presentHour < timeBlock) {
 
     $("textarea").addClass("present");
@@ -47,15 +44,16 @@ function blockColors(){
     console.log(timeBlock);
 }
 
-}
+
+
 
 function addSaveFunctionality(){
     var buttons = document.getElementsByClassName("saveBtn")
     
     $(buttons).on("click", function () {
-        var task = $('.text-area').val();
+        var task = document.getElementsByClassName("text-area");
         localStorage.setItem(presentHour, task);
         console.log("task")
     });
-   // console.log(task)
+   //console.log(task)
 }
