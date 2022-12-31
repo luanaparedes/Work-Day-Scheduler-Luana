@@ -8,16 +8,7 @@ $(document).ready(function () {
 
 function createPage(){
     console.log("running")
-   // var container = document.getElementsByClassName('container')[0]
-   // console.log(container)
-   // for(let i=9; i < 18; i++){
-  //      container.innerHTML+=
-    //     `<div class="row">
-    //     <div class="col-1 time-block">${i}:00</div>
-    //     <textarea class="col-10 text-area"></textarea>
-    //     <button class="col-1 saveBtn">Save Task</button>
-    //    </div>`
-  //  }
+
     addSaveFunctionality()
   //  blockColors();
 }
@@ -25,21 +16,33 @@ function createPage(){
 
 //function blockColors() {
 
-const timeBlocks = document.querySelectorAll('.time-block');
-let presentHour = moment().format("hh");
+const rows = document.getElementsByClassName("text-area");
+let currentHour = parseInt(moment().format('H'));
 
-$('.timeBlock').each(function(){
-    var val = parseInt($(this).prop('id'));
-    if(val > presentHour && val < presentHour+6){
-        $(this).css('background-color','Blue');
-    }else if(val < presentHour && val > presentHour-6){
-        $(this).css('background-color','Red');
-    }else if(val === presentHour){
-        $(this).css('background-color','Green');
-    }else{
-        $(this).css('background-color','White');
+Array.from(rows).forEach(row => {
+  let
+    rowIdString = row.id,
+    rowHour;
+  if (rowIdString) {
+    rowHour = parseInt(rowIdString);
+  }
+  if (rowHour) {
+    // Compares row id to current hour and sets color accordingly
+    if (currentHour === rowHour) {
+      setColor(row, "red");
+    } else if ((currentHour < rowHour) && (currentHour > rowHour - 6)) {
+      setColor(row, "green");
+    } else if ((currentHour > rowHour) && (currentHour < rowHour + 6)) {
+      setColor(row, "lightgrey");
+    } else {
+      setColor(row, "white");
     }
+  }
 });
+
+function setColor(element, color) {
+  element.style.backgroundColor = color;
+}
 // for (let timeBlock of timeBlocks) {
     
     
@@ -71,8 +74,13 @@ function addSaveFunctionality(){
     
     $(buttons).on("click", function () {
         var task = document.getElementsByClassName("text-area");
-        localStorage.setItem(presentHour, task);
+        localStorage.setItem('todos', JSON.stringify(task));
         console.log("task")
     });
+    let todos = [];
+const todosJson = localStorage.getItem('todos');
+if(todosJson){
+    todos = JSON.parse(todosJson);
+}
    //console.log(task)
 }
