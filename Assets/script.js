@@ -7,9 +7,9 @@ $(document).ready(function () {
 })
 
 function createPage(){
-    console.log("running")
+    console.log("running");
 
-    addSaveFunctionality()
+    addSaveFunctionality();
   //  blockColors();
 }
 
@@ -19,6 +19,11 @@ function createPage(){
 const rows = document.getElementsByClassName("text-area");
 let currentHour = parseInt(moment().format('H'));
 
+function loadTodos(id) {
+  var task = localStorage.getItem(id);
+  $("#" + id).val(task);
+};
+
 Array.from(rows).forEach(row => {
   let
     rowIdString = row.id,
@@ -26,22 +31,25 @@ Array.from(rows).forEach(row => {
   if (rowIdString) {
     rowHour = parseInt(rowIdString);
   }
+  loadTodos(rowHour);
+  console.log(rowHour, currentHour);
   if (rowHour) {
-    // Compares row id to current hour and sets color accordingly
+    // Compares row id to current hour and sets color accordingly temp fix
     if (currentHour === rowHour) {
       setColor(row, "red");
-    } else if ((currentHour < rowHour) && (currentHour > rowHour - 6)) {
+    } else if (currentHour < rowHour) {
       setColor(row, "green");
-    } else if ((currentHour > rowHour) && (currentHour < rowHour + 6)) {
-      setColor(row, "lightgrey");
     } else {
-      setColor(row, "white");
+      setColor(row, "lightgrey");
     }
+    console.log(currentHour);
   }
 });
 
+
 function setColor(element, color) {
   element.style.backgroundColor = color;
+  console.log(element);
 }
 // for (let timeBlock of timeBlocks) {
     
@@ -70,17 +78,16 @@ function setColor(element, color) {
 
 
 function addSaveFunctionality(){
-    var buttons = document.getElementsByClassName("saveBtn")
     
-    $(buttons).on("click", function () {
-        var task = document.getElementsByClassName("text-area");
-        localStorage.setItem('todos', JSON.stringify(task));
-        console.log("task")
+    $(".saveBtn").on("click", function () {
+        var task = $(this).siblings(".text-area").val();
+        var id = $(this).siblings(".text-area").attr("id");
+        localStorage.setItem(id, task);
+        console.log(task);
     });
     let todos = [];
 const todosJson = localStorage.getItem('todos');
 if(todosJson){
     todos = JSON.parse(todosJson);
 }
-   //console.log(task)
 }
