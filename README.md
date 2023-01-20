@@ -6,11 +6,13 @@ Work Day Scheduler allows users to keep track of their tasks for the day with an
 
 ## Installation
 
-To deploy the Work Day Scheduler CLICK HERE ADD LINK
+To deploy the Work Day Scheduler [CLICK HERE](https://luanaparedes.github.io/Work-Day-Scheduler-Luana/)
 
 ## Usage
 
-Users can stay organized and ready for what the day has planned with the hourly color changing time slots that can add or remove tasks entered by user. ADD PICTURE
+Users can stay organized and ready for what the day has planned with the hourly color changing time slots that can add or remove tasks entered by user. 
+
+![Work Day Schedueler Image](./Assets/images/ch11-img.png)
 
 ## Credits
 
