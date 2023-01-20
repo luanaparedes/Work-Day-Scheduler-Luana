@@ -10,11 +10,11 @@ function createPage(){
     console.log("running");
 
     addSaveFunctionality();
-  //  blockColors();
+  
 }
 
 
-//function blockColors() {
+
 
 const rows = document.getElementsByClassName("text-area");
 let currentHour = parseInt(moment().format('H'));
@@ -51,32 +51,8 @@ function setColor(element, color) {
   element.style.backgroundColor = color;
   console.log(element);
 }
-// for (let timeBlock of timeBlocks) {
-    
-    
-//     const timeDisplay = parseInt(timeBlock.getAttribute('time-block'));
-    
-//     if (presentHour == timeDisplay) {
 
-//     $("textarea").addClass("present");
-//     $("textarea").children(".description").addClass("white-text");
-    
-// } else if (presentHour == timeBlock) {
-//     $("textarea").removeClass("present");
-//     $("textarea").addClass("future");
-    
-// } else if (presentHour > timeBlock) {
-//     $("textarea").removeClass("future");
-//     $("textarea").addClass("past");
-//     }
-    
-// }
-// console.log(timeBlocks)
-// }
-
-
-
-
+// ssaving notes and callin them on page reload
 function addSaveFunctionality(){
     
     $(".saveBtn").on("click", function () {
